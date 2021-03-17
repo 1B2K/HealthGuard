@@ -40,21 +40,34 @@ const AddHistoryScreen = ({ navigation }) => {
   }
 
   const vaccineTypeArr = [
-    { label: "A", value: "A" },
-    { label: "B", value: "B" },
-    { label: "C", value: "C" },
+    { label: "Covid19", value: "A" },
+    { label: "Flu", value: "B" },
+    { label: "DTaP", value: "C" },
+    { label: "Tdap", value: "B" },
+    { label: "Hib", value: "C" },
+    { label: "Hepatitis A", value: "B" },
+    { label: "Hepatitis B", value: "C" },
+    { label: "Papillomavirus", value: "B" },
   ];
   return (
     <View style={screen.container}>
       <View style={styles.typeNameContainer}>
         <Text style={styles.typeNameText}>Type</Text>
-
         <DropDownPicker
           items={vaccineTypeArr}
           containerStyle={styles.typePickerStyle}
           defaultValue="A"
         />
       </View>
+      {/* <View style={styles.typeNameContainer}>
+        <Text style={styles.typeNameText}>Name</Text>
+        <TextInput
+          style={styles.textInputStyle}
+          //   onChangeText={text => onChangeText(text)}
+          //   value={value}
+        />
+      </View> */}
+      
       <View style={styles.makeRow}>
         <View style={styles.dayStyle}>
           <Text style={styles.dateText}>Day</Text>
@@ -82,14 +95,7 @@ const AddHistoryScreen = ({ navigation }) => {
         </View>
       </View>
 
-      <View style={styles.typeNameContainer}>
-        <Text style={styles.typeNameText}>Name</Text>
-        <TextInput
-          style={styles.textInputStyle}
-          //   onChangeText={text => onChangeText(text)}
-          //   value={value}
-        />
-      </View>
+     
 
       <View style={styles.noteContainer}>
         <Text style={styles.questionStyle}>Note</Text>
@@ -112,7 +118,7 @@ const AddHistoryScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   typeNameContainer: {
-    marginTop: "8%",
+    marginTop: "25%",
     marginBottom: "5%",
     marginLeft: "15%",
     flexDirection: "row",
