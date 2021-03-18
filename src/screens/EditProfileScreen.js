@@ -4,7 +4,6 @@ import { StyleSheet, View, Text, SafeAreaView } from "react-native";
 import screenConfig from "../config/screen";
 import colors from "../config/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { scale, moderateScale, verticalScale } from "../config/scaling";
 import DropDownPicker from "react-native-dropdown-picker";
 
 const EditProfileScreen = ({ navigation }) => {
@@ -44,34 +43,35 @@ const EditProfileScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={screenConfig.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.Datetext}>Date of Birth</Text>
-        <View style={styles.makeRow}>
-          <View style={styles.dayStyle}>
-            <Text style={styles.dateText}>Day</Text>
-            <DropDownPicker
-              items={dayArr}
-              defaultValue={1}
-              containerStyle={{ height: 40 }}
-            />
-          </View>
-          <View style={styles.monStyle}>
-            <Text style={styles.dateText}>Month</Text>
-            <DropDownPicker
-              items={monArr}
-              containerStyle={{ height: 40 }}
-              defaultValue="January"
-            />
-          </View>
-          <View style={styles.yearStyle}>
-            <Text style={styles.dateText}>Year</Text>
-            <DropDownPicker
-              items={yearArr}
-              containerStyle={{ height: 40 }}
-              defaultValue={year}
-            />
+        <View style={styles.fieldContainer}>
+          <Text style={styles.Datetext}>Date of Birth</Text>
+          <View style={styles.makeRow}>
+            <View style={styles.dayStyle}>
+              <Text style={styles.dateText}>Day</Text>
+              <DropDownPicker
+                items={dayArr}
+                defaultValue={1}
+                containerStyle={{ height: 40 }}
+              />
+            </View>
+            <View style={styles.monStyle}>
+              <Text style={styles.dateText}>Month</Text>
+              <DropDownPicker
+                items={monArr}
+                containerStyle={{ height: 40 }}
+                defaultValue="January"
+              />
+            </View>
+            <View style={styles.yearStyle}>
+              <Text style={styles.dateText}>Year</Text>
+              <DropDownPicker
+                items={yearArr}
+                containerStyle={{ height: 40 }}
+                defaultValue={year}
+              />
+            </View>
           </View>
         </View>
-
         <View style={styles.fieldContainer}>
           <Text style={styles.genderText}> Gender</Text>
           <View style={styles.genderStyle}>
@@ -105,43 +105,49 @@ const styles = StyleSheet.create({
     marginTop: "5%",
   },
   buttonContainer: {
+    flex: 1,
     marginLeft: "25%",
+    flexDirection: "column",
     height: "30%",
+    bottom: 40,
   },
   buttonText: {
     fontSize: 18,
   },
   Datetext: {
-    fontSize: moderateScale(18, 0.25),
+    fontSize: 18,
     top: 55,
-    textAlign: "center",
+  },
+  fieldContainer: {
+    marginLeft: "3%",
+    marginTop: "5%",
   },
   formContainer: {
+    flex: 1,
     bottom: 60,
-    marginTop: verticalScale(30),
+    marginTop: "15%",
   },
   makeRow: {
     flexDirection: "row",
     alignSelf: "center",
-    marginTop: verticalScale(70),
+    marginLeft: "18%",
   },
-  dayStyle: { width: scale(50) },
-  monStyle: { width: moderateScale(110, 0.4), marginLeft: 10 },
-  yearStyle: { width: moderateScale(80), marginLeft: 10 },
+  dayStyle: { width: "18%" },
+  monStyle: { width: "30%", marginLeft: 10 },
+  yearStyle: { width: "23%", marginLeft: 10 },
   dateText: {
     fontSize: 15,
     textAlign: "center",
     marginBottom: 5,
   },
   genderStyle: {
-    width: moderateScale(250),
-    alignSelf: "center",
-    top: moderateScale(30, 0.4),
+    width: "64%",
+    marginLeft: "27%",
+    bottom: 10,
   },
   genderText: {
-    fontSize: moderateScale(18, 0.25),
+    fontSize: 18,
     top: 22,
-    textAlign: "center",
   },
 });
 

@@ -5,11 +5,9 @@ import {
   View,
   TouchableOpacity,
   TextInput,
-  SafeAreaView,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
-import { scale, moderateScale, verticalScale } from "../config/scaling";
 import colors from "../config/colors";
 import screen from "../config/screen";
 
@@ -47,7 +45,7 @@ const AddHistoryScreen = ({ navigation }) => {
     { label: "C", value: "C" },
   ];
   return (
-    <SafeAreaView style={screen.container}>
+    <View style={screen.container}>
       <View style={styles.typeNameContainer}>
         <Text style={styles.typeNameText}>Type</Text>
 
@@ -108,7 +106,7 @@ const AddHistoryScreen = ({ navigation }) => {
           <Text style={styles.button}>Add</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -149,9 +147,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignSelf: "center",
   },
-  dayStyle: { width: scale(50) },
-  monStyle: { width: moderateScale(110, 0.4), marginLeft: "5%" },
-  yearStyle: { width: moderateScale(80), marginLeft: "5%" },
+  dayStyle: { width: "15%" },
+  monStyle: { width: "25%", marginLeft: "5%" },
+  yearStyle: { width: "20%", marginLeft: "5%" },
   dateText: {
     fontSize: 20,
     textAlign: "center",
