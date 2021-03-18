@@ -38,6 +38,7 @@ const EditProfileScreen = ({ navigation }) => {
     { label: "Male", value: "Male" },
     { label: "Female", value: "Female" },
     { label: "Other", value: "Other" },
+    { label: "Prefer not to answer", value: "noAnswer" },
   ];
 
   return (

@@ -41,19 +41,19 @@ const AddHistoryScreen = ({ navigation }) => {
   }
 
   const vaccineTypeArr = [
-    { label: "Covid19", value: "A" },
-    { label: "Flu", value: "B" },
-    { label: "DTap", value: "C" },
-    { label: "Tdap", value: "D" },
-    { label: "Hib", value: "E" },
-    { label: "Hepatitis A", value: "F" },
-    { label: "Hapatitis B", value: "G" },
-    { label: "Papillomavirus", value: "H" },
-    { label: "M-M-R", value: "I" },
-    { label: "Meningococcal", value: "J" },
-    { label: "Pneumococcal", value: "K" },
-    { label: "Poliovirus", value: "L" },
-    { label: "Rotavirus", value: "M" },
+    { label: "Covid19", value: "covid19" },
+    { label: "Flu", value: "flu" },
+    { label: "DTap", value: "DTap" },
+    { label: "Tdap", value: "Tdap" },
+    { label: "Hib", value: "Hib" },
+    { label: "Hepatitis A", value: "HepatitisA" },
+    { label: "Hapatitis B", value: "HepatitisB" },
+    { label: "Papillomavirus", value: "Papillomavirus" },
+    { label: "M-M-R", value: "M-M-R" },
+    { label: "Meningococcal", value: "Meningococcal" },
+    { label: "Pneumococcal", value: "Pneumococcal" },
+    { label: "Poliovirus", value: "Poliovirus" },
+    { label: "Rotavirus", value: "Rotavirus" },
   ];
   return (
     <View style={screen.container}>
@@ -63,7 +63,7 @@ const AddHistoryScreen = ({ navigation }) => {
         <DropDownPicker
           items={vaccineTypeArr}
           containerStyle={styles.typePickerStyle}
-          defaultValue="A"
+          defaultValue="covid19"
         />
       </View>
       <View style={styles.makeRow}>
