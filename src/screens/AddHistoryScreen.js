@@ -43,6 +43,7 @@ const AddHistoryScreen = ({ navigation }) => {
   }
 
   const vaccineTypeArr = [
+<<<<<<< HEAD
     { label: "Covid19", value: "covid19" },
     { label: "Flu", value: "flu" },
     { label: "DTap", value: "DTap" },
@@ -56,18 +57,36 @@ const AddHistoryScreen = ({ navigation }) => {
     { label: "Pneumococcal", value: "Pneumococcal" },
     { label: "Poliovirus", value: "Poliovirus" },
     { label: "Rotavirus", value: "Rotavirus" },
+=======
+    { label: "Covid19", value: "A" },
+    { label: "Flu", value: "B" },
+    { label: "DTaP", value: "C" },
+    { label: "Tdap", value: "B" },
+    { label: "Hib", value: "C" },
+    { label: "Hepatitis A", value: "B" },
+    { label: "Hepatitis B", value: "C" },
+    { label: "Papillomavirus", value: "B" },
+>>>>>>> 26fe6f8cae55ae5c3eabd6670d9d7058aaa42fa8
   ];
   return (
     <SafeAreaView style={screen.container}>
       <View style={styles.typeNameContainer}>
         <Text style={styles.typeNameText}>Type</Text>
-
         <DropDownPicker
           items={vaccineTypeArr}
           containerStyle={styles.typePickerStyle}
           defaultValue="covid19"
         />
       </View>
+      {/* <View style={styles.typeNameContainer}>
+        <Text style={styles.typeNameText}>Name</Text>
+        <TextInput
+          style={styles.textInputStyle}
+          //   onChangeText={text => onChangeText(text)}
+          //   value={value}
+        />
+      </View> */}
+      
       <View style={styles.makeRow}>
         <View style={styles.dayStyle}>
           <Text style={styles.dateText}>Day</Text>
@@ -95,6 +114,7 @@ const AddHistoryScreen = ({ navigation }) => {
         </View>
       </View>
 
+<<<<<<< HEAD
       {/* <View style={styles.typeNameContainer}>
         <Text style={styles.typeNameText}>Name</Text>
         <TextInput
@@ -103,6 +123,9 @@ const AddHistoryScreen = ({ navigation }) => {
           //   value={value}
         />
       </View> */}
+=======
+     
+>>>>>>> 26fe6f8cae55ae5c3eabd6670d9d7058aaa42fa8
 
       <View style={styles.noteContainer}>
         <Text style={styles.questionStyle}>Note</Text>
@@ -125,7 +148,11 @@ const AddHistoryScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   typeNameContainer: {
+<<<<<<< HEAD
     marginTop: "5%",
+=======
+    marginTop: "25%",
+>>>>>>> 26fe6f8cae55ae5c3eabd6670d9d7058aaa42fa8
     marginBottom: "5%",
     marginLeft: "15%",
     flexDirection: "row",

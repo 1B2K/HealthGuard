@@ -42,8 +42,8 @@ const GetUserInfoScreen = ({ navigation }) => {
   const genderArr = [
     { label: "Male", value: "Male" },
     { label: "Female", value: "Female" },
-    { label: "Other", value: "Other" },    
-    { label: "Prefer not to answer", value: "noAnswer" },
+    { label: "Other", value: "Other" },
+    { label: "Prefer not to answer", value: "Prefer not to answer" },
   ];
   return (
     <View style={screen.container}>
