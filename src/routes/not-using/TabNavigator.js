@@ -3,10 +3,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 //import HomeStack from "../routes/HomeStack";
-import ProfileStack from "../routes/ProfileStack";
+import ProfileStack from "./ProfileStack";
 //import CalendarStack from "./CalendarStack";
-import HistoryStack from "./HistoryStack";
-import colors from "../config/colors";
+// import HistoryStack from "./ChildrenStack";
+import colors from "../../config/colors";
 
 const Tab = createBottomTabNavigator();
 
