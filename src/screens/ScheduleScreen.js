@@ -228,19 +228,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   profileInfoContainer: {
-    paddingTop: moderateScale(18),
+    paddingTop: verticalScale(19),
     width: scale(300),
     height: verticalScale(115),
     alignSelf: "center",
   },
   profileTextInfoContainer: {
-    paddingLeft: moderateScale(15),
-    width: moderateScale(254),
+    paddingLeft: scale(14),
+    width: scale(234),
     fontFamily: "notoSans-Regular",
   },
   profileImage: {
-    height: moderateScale(73),
-    width: moderateScale(73),
+    marginTop: verticalScale(3),
+    height: scale(66),
+    width: scale(66),
     borderRadius: moderateScale(50),
   },
   profileInfoText: {
@@ -252,8 +253,8 @@ const styles = StyleSheet.create({
     height: verticalScale(450),
   },
   titleStyle: {
-    marginTop: moderateScale(22),
-    marginBottom: moderateScale(6),
+    marginTop: verticalScale(23),
+    marginBottom: verticalScale(6),
     fontFamily: "fredokaOne-regular",
     fontSize: moderateScale(14),
     width: scale(150),
