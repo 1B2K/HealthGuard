@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  Image,
+  TextInput,
+} from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
@@ -11,6 +18,7 @@ import screen from "../config/screen";
 
 const AddChildScreen = ({ navigation }) => {
   const { signIn } = React.useContext(AuthContext);
+  const [text, onChangeText] = React.useState("Useless Text");
 
   let dayArr = [];
 
@@ -45,45 +53,104 @@ const AddChildScreen = ({ navigation }) => {
     { label: "Other", value: "Other" },
   ];
   return (
-    <View style={screen.container}>
-      <Text style={styles.questionStyle}>Date of Birth</Text>
-      <View style={styles.makeRow}>
-        <View style={styles.dayStyle}>
-          <Text style={styles.dateText}>Day</Text>
-          <DropDownPicker
-            items={dayArr}
-            defaultValue={1}
-            containerStyle={{ height: 40 }}
-          />
+    <SafeAreaView style={screen.container}>
+      <View style={styles.imageContainer}>
+        <View style={styles.makeRow}>
+          <Text style={styles.fieldText}> Choose the profile image</Text>
+          <Text style={styles.star}>*</Text>
         </View>
-        <View style={styles.monStyle}>
-          <Text style={styles.dateText}>Month</Text>
-          <DropDownPicker
-            items={monArr}
-            containerStyle={{ height: 40 }}
-            defaultValue="January"
-          />
-        </View>
-        <View style={styles.yearStyle}>
-          <Text style={styles.dateText}>Year</Text>
-          <DropDownPicker
-            items={yearArr}
-            containerStyle={{ height: 40 }}
-            defaultValue={year}
+        <View style={styles.iconContainer}>
+          <Image
+            style={styles.icon}
+            source={require("../../assets/icon.png")}
           />
         </View>
       </View>
 
-      <View style={styles.genderPickerStyle}>
-        <Text style={styles.questionStyle}>Gender</Text>
+      <View style={styles.nameContainer}>
+        <View style={styles.makeRow}>
+          <Text style={styles.fieldText}> Name</Text>
+          <Text style={styles.star}>*</Text>
+        </View>
+        <View style={styles.makeRow}>
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeText}
+            placeholder="First Name"
+          />
+          <TextInput
+            style={styles.input}
+            onChangeText={onChangeText}
+            placeholder="Last Name"
+          />
+        </View>
+      </View>
+
+      <View style={styles.birthContainer}>
+        <View style={styles.makeRow}>
+          <Text style={styles.fieldText}>Date of Birth</Text>
+          <Text style={styles.star}>*</Text>
+        </View>
+
+        <View style={styles.makeRow}>
+          <DropDownPicker
+            items={monArr}
+            containerStyle={styles.monStyle}
+            placeholderStyle={styles.makeCenter}
+            selectedLabelStyle={{ textAlign: "center" }}
+            arrowColor={colors.blue}
+            // style={{ borderRadius: moderateScale(30, 2) }}
+            //defaultValue="January"
+            placeholder="Month"
+          />
+
+          <DropDownPicker
+            items={dayArr}
+            //defaultValue={1}
+            containerStyle={styles.monStyle}
+            placeholderStyle={styles.makeCenter}
+            selectedLabelStyle={{ textAlign: "center" }}
+            arrowColor={colors.blue}
+            placeholder="Day"
+          />
+        </View>
 
         <DropDownPicker
+          items={yearArr}
+          containerStyle={styles.yearStyle}
+          //defaultValue={year}
+          placeholderStyle={styles.makeCenter}
+          selectedLabelStyle={{ textAlign: "center" }}
+          arrowColor={colors.blue}
+          placeholder="Year"
+        />
+      </View>
+
+      <View style={styles.genderPickerStyle}>
+        <View style={styles.makeRow}>
+          <Text style={styles.fieldText}>Gender</Text>
+          <Text style={styles.star}>*</Text>
+        </View>
+        <DropDownPicker
           items={genderArr}
-          containerStyle={{ height: 40 }}
+          containerStyle={styles.yearStyle}
+          selectedLabelStyle={{ textAlign: "center" }}
+          arrowColor={colors.blue}
           defaultValue="Male"
         />
       </View>
 
+      <View style={styles.additionalContainer}>
+        <Text style={styles.fieldText}>Additional Information</Text>
+        <View style={styles.additionalText}>
+          <TextInput
+            onChangeText={onChangeText}
+            numberOfLines={4}
+            multiline={true}
+            placeholder="Type any additional information about the child"
+          />
+        </View>
+      </View>
       <View style={styles.btnContainer}>
         <TouchableOpacity
           style={screen.buttonContainer}
@@ -92,31 +159,93 @@ const AddChildScreen = ({ navigation }) => {
           <Text style={screen.buttonText}>Submit</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  dayStyle: {
-    width: scale(50),
+  additionalContainer: {
+    marginTop: moderateScale(15),
+    marginLeft: moderateScale(24),
   },
-  yearStyle: { width: moderateScale(80), marginLeft: 20 },
-  dateText: {
-    fontSize: moderateScale(17),
-    marginBottom: scale(5),
+  additionalText: {
+    width: scale(305),
+    height: verticalScale(115),
+    borderRadius: moderateScale(12, 2),
+    borderColor: colors.white,
+    borderWidth: moderateScale(1),
+    textAlign: "center",
+    backgroundColor: colors.white,
+    marginLeft: scale(5),
   },
-  genderPickerStyle: {
-    alignSelf: "center",
-    width: moderateScale(275),
+  birthContainer: {
+    marginTop: moderateScale(15),
+    marginLeft: moderateScale(24),
+  },
+  fieldText: {
+    fontFamily: "notoSans-regular",
+    fontSize: moderateScale(12),
+  },
+  icon: {
+    width: scale(70),
+    height: verticalScale(70),
+    borderRadius: moderateScale(100, 2),
+  },
+  iconContainer: {
+    width: scale(80),
+    height: verticalScale(80),
+    borderRadius: moderateScale(80, 2),
+    borderColor: colors.lightBlue,
+    borderWidth: moderateScale(3),
+    borderStyle: "dashed",
+  },
+  input: {
+    width: scale(150),
+    height: verticalScale(35),
+    borderRadius: moderateScale(30, 2),
+    borderColor: colors.white,
+    borderWidth: moderateScale(1),
+    textAlign: "center",
+    backgroundColor: colors.white,
+    marginLeft: scale(5),
+  },
+  imageContainer: {
+    marginTop: moderateScale(88),
+    marginLeft: moderateScale(24),
+  },
+  star: {
+    color: colors.red,
+    fontSize: moderateScale(12),
+    marginLeft: scale(2),
+  },
+  makeCenter: {
+    textAlign: "center",
+    color: colors.grey,
   },
   makeRow: {
     flexDirection: "row",
-    alignSelf: "center",
   },
   monStyle: {
-    width: moderateScale(110, 0.4),
-    marginLeft: scale(20),
+    width: scale(150),
+    height: verticalScale(35),
+    borderRadius: moderateScale(30, 2),
+    marginLeft: scale(5),
   },
+  nameContainer: {
+    marginTop: moderateScale(20),
+    marginLeft: moderateScale(24),
+  },
+  yearStyle: {
+    width: scale(305),
+    height: verticalScale(35),
+    borderRadius: moderateScale(30, 2),
+    marginLeft: scale(5),
+  },
+  genderPickerStyle: {
+    marginTop: moderateScale(15),
+    marginLeft: moderateScale(24),
+  },
+
   questionStyle: {
     marginTop: verticalScale(40),
     marginBottom: scale(10),
@@ -126,12 +255,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: colors.darkGrey,
   },
-  yearStyle: {
-    width: moderateScale(80),
-    marginLeft: scale(20),
-  },
+
   btnContainer: {
-    marginTop: moderateScale(40),
+    marginTop: moderateScale(20),
   },
 });
 export default AddChildScreen;
