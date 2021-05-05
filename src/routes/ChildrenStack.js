@@ -7,6 +7,7 @@ import ScheduleScreen from "../screens/ScheduleScreen";
 import AddChildScreen from "../screens/AddChildScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
+import EditChildrenScreen from "../screens/EditChildrenScreen";
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const ChildrenStack = () => {
       <Stack.Screen name="ScheduleScreen" component={ScheduleScreen} />
       <Stack.Screen name="AddChildScreen" component={AddChildScreen} />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+      <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
     </Stack.Navigator>
   );

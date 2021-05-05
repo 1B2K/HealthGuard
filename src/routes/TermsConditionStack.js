@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import TermsConditionScreen from "../screens/TermsConditionScreen";
 import ChildrenScreen from "../screens/ChildrenScreen";
+import EditChildrenScreen from "../screens/EditChildrenScreen";
 import ScheduleScreen from "../screens/ScheduleScreen";
 import AddChildScreen from "../screens/AddChildScreen";
 import NotificationScreen from "../screens/NotificationScreen";
@@ -22,6 +23,7 @@ const TermsConditionStack = () => {
         component={TermsConditionScreen}
       />
       <Stack.Screen name="ChildrenScreen" component={ChildrenScreen} />
+      <Stack.Screen name="EditChildrenScreen" component={EditChildrenScreen} />
       <Stack.Screen name="ScheduleScreen" component={ScheduleScreen} />
       <Stack.Screen name="AddChildScreen" component={AddChildScreen} />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />

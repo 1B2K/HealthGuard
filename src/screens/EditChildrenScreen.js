@@ -1,15 +1,7 @@
 import React from "react";
-import { Image, StyleSheet, View, Text, SafeAreaView } from "react-native";
-
-import { AuthContext } from "../config/context";
+import { Image, StyleSheet, View, Text } from "react-native";
 import { scale, moderateScale, verticalScale } from "../config/scaling";
-import screen from "../config/screen";
-import colors from "../config/colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Card } from "react-native-elements";
-import { Ionicons } from "@expo/vector-icons";
-import EditChildrenScreen from "./EditChildrenScreen";
-import ScheduleScreen from "./ScheduleScreen";
 
 const users = [
   {
@@ -18,20 +10,28 @@ const users = [
     latest: "2020-03-20",
     avatar: "https://source.unsplash.com/user/nicoleknipes",
   },
+  {
+    name: "JasperMattews",
+    birth: "Jan 15th 2020",
+    latest: "2020-03-20",
+    avatar: "https://source.unsplash.com/user/nicoleknipes",
+  },
+  {
+    name: "JasperMattews",
+    birth: "Jan 15th 2020",
+    latest: "2020-03-20",
+    avatar: "https://source.unsplash.com/user/nicoleknipes",
+  },
 ];
 
-const ChildrenScreen = ({ navigation }) => {
+const EditChildrenScreen = ({ navigation }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.header}>
         {users.map((u, i) => {
           return (
             <View>
-              <TouchableOpacity
-                key={i}
-                style={styles.container}
-                onPress={() => navigation.navigate(ScheduleScreen)}
-              >
+              <View key={i} style={styles.container}>
                 {/* <Image source={{ uri:u.avatar }} /> */}
                 <Image
                   style={styles.image}
@@ -42,28 +42,32 @@ const ChildrenScreen = ({ navigation }) => {
                   <Text style={styles.birth}>BIRTH: {u.birth}</Text>
                   <Text style={styles.birth}>LATEST: {u.latest}</Text>
                 </View>
-              </TouchableOpacity>
+                <View style={styles.smallIcon}>
+                  <Image
+                    style={styles.icon}
+                    source={require("../../assets/icon.png")}
+                  />
+                  <Image
+                    style={styles.icon}
+                    source={require("../../assets/icon.png")}
+                  />
+                </View>
+              </View>
               {/* <View style={{ flex: 0.5 }} /> */}
             </View>
           );
         })}
       </View>
       <View style={styles.foot}>
-        <Ionicons
-          name="ios-add-circle"
-          size={90}
-          color={colors.blue}
-          style={styles.addIcon}
+        <TouchableOpacity
+          style={styles.done}
           onPress={() =>
-            navigation.navigate("AddChildScreen", {
-              name: "AddChildScreen",
-            })
+            navigation.navigate("ChildrenScreen", { name: "Edit Children" })
           }
-        ></Ionicons>
+        >
+          <Text style={styles.doneText}> DONE</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => navigation.navigate(EditChildrenScreen)}>
-        <Text>Edit</Text>
-      </TouchableOpacity>
     </View>
   );
 };
@@ -127,13 +131,44 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     flex: 1,
   },
-  addIcon: {
-    flex: 1,
-    position: "absolute",
-    alignSelf: "flex-end",
+  done: {
+    backgroundColor: "blue",
+    width: 199,
+    height: 40,
+    borderRadius: 30,
+    // position: "absolute",
+    alignSelf: "center",
     bottom: 0,
+    left: 0,
     right: 0,
+  },
+  doneText: {
+    fontFamily: "fredokaOne-regular",
+    fontSize: 16,
+    color: "white",
+    lineHeight: 19,
+    marginTop: 10,
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
+  dataContainer: {
+    marginTop: verticalScale(60),
+    textAlign: "center",
+  },
+  dobGendertext: {
+    fontSize: moderateScale(20),
+    marginTop: verticalScale(25),
+  },
+  editContainer: {
+    top: verticalScale(60),
+  },
+  textField: {
+    fontSize: moderateScale(16),
+  },
+  logoContainer: {
+    top: verticalScale(40),
+    alignItems: "center",
   },
 });
 
-export default ChildrenScreen;
+export default EditChildrenScreen;
