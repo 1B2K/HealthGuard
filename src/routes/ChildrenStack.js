@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import TermsConditionScreen from "../screens/TermsConditionScreen";
@@ -9,8 +10,20 @@ import NotificationScreen from "../screens/NotificationScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
 
 import colors from "../config/colors";
+import { moderateScale } from "../config/scaling";
 
 const Stack = createStackNavigator();
+
+const MyCustomHeaderBackImage = () => (
+  <Image
+    source={require("../../assets/icons/back.png")}
+    style={{
+      width: moderateScale(10),
+      height: moderateScale(15),
+      tintColor: colors.blue,
+    }}
+  />
+);
 
 const ChildrenStack = () => {
   return (
@@ -24,6 +37,7 @@ const ChildrenStack = () => {
         headerTitleStyle: {
           fontWeight: "bold",
         },
+        headerBackImage: MyCustomHeaderBackImage,
       }}
     >
       <Stack.Screen name="ChildrenScreen" component={ChildrenScreen} />

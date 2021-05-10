@@ -249,6 +249,7 @@ const styles = StyleSheet.create({
     borderColor: colors.blue,
     borderWidth: moderateScale(3),
     borderStyle: "dotted",
+    marginLeft: scale(5),
   },
   input: {
     width: scale(150),
