@@ -35,7 +35,7 @@ const ChildrenStack = () => {
       <Stack.Screen
         name="AddChildScreen"
         component={AddChildScreen}
-        options={{ title: "Add Profile" }}
+        options={{ title: "ADD PROFILE" }}
       />
       <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
       <Stack.Screen name="EditProfileScreen" component={EditProfileScreen} />
