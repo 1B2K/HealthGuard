@@ -206,7 +206,7 @@ const AddChildScreen = ({ navigation }) => {
             style={screen.buttonContainer}
             onPress={() => navigation.navigate("ChildrenScreen")}
           >
-            <Text style={screen.buttonText}>Add Profile</Text>
+            <Text style={screen.buttonText}>ADD PROFILE</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -243,13 +243,10 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(100, 2),
   },
   iconContainer: {
-    width: scale(75),
-    height: verticalScale(75),
+    width: scale(70),
+    height: verticalScale(70),
     borderRadius: moderateScale(100, 2),
-    borderColor: colors.blue,
-    borderWidth: moderateScale(3),
-    borderStyle: "dotted",
-    marginLeft: scale(5),
+    marginLeft: scale(9),
   },
   input: {
     width: scale(150),
