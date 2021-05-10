@@ -6,6 +6,8 @@ import {
   SafeAreaView,
   Image,
   TextInput,
+  ScrollView,
+  FlatList,
 } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -52,113 +54,162 @@ const AddChildScreen = ({ navigation }) => {
     { label: "Female", value: "Female" },
     { label: "Other", value: "Other" },
   ];
+
+  const image = [
+    {
+      id: "1",
+      photo: "First Item",
+    },
+    {
+      id: "2",
+      photo: "Second Item",
+    },
+    {
+      id: "3",
+      photo: "Third Item",
+    },
+  ];
+
+  const Item = ({ onPress, backgroundColor }) => (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.iconContainer, backgroundColor]}
+    >
+      <Image style={styles.icon} source={require("../../assets/icon.png")} />
+    </TouchableOpacity>
+  );
+
+  const [selectedId, setSelectedId] = React.useState(null);
+
+  const renderItem = ({ item }) => {
+    const backgroundColor =
+      item.id === selectedId ? colors.white : colors.blue2;
+
+    return (
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        backgroundColor={{ backgroundColor }}
+      />
+    );
+  };
+
   return (
     <SafeAreaView style={screen.container}>
-      <View style={styles.imageContainer}>
-        <View style={styles.makeRow}>
-          <Text style={styles.fieldText}> Choose the profile image</Text>
-          <Text style={styles.star}>*</Text>
-        </View>
-        <View style={styles.iconContainer}>
-          <Image
-            style={styles.icon}
-            source={require("../../assets/icon.png")}
+      <ScrollView>
+        <View style={styles.imageContainer}>
+          <View style={styles.makeRow}>
+            <Text style={styles.fieldText}> Choose the profile image</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
+          {/* <View style={styles.iconContainer}>
+            <Image
+              style={styles.icon}
+              source={require("../../assets/icon.png")}
+            />
+          </View> */}
+          <FlatList
+            horizontal
+            data={image}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedId}
           />
         </View>
-      </View>
 
-      <View style={styles.nameContainer}>
-        <View style={styles.makeRow}>
-          <Text style={styles.fieldText}> Name</Text>
-          <Text style={styles.star}>*</Text>
-        </View>
-        <View style={styles.makeRow}>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            placeholder="First Name"
-          />
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            placeholder="Last Name"
-          />
-        </View>
-      </View>
-
-      <View style={styles.birthContainer}>
-        <View style={styles.makeRow}>
-          <Text style={styles.fieldText}>Date of Birth</Text>
-          <Text style={styles.star}>*</Text>
+        <View style={styles.nameContainer}>
+          <View style={styles.makeRow}>
+            <Text style={styles.fieldText}> Name</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
+          <View style={styles.makeRow}>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              placeholder="First Name"
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              placeholder="Last Name"
+            />
+          </View>
         </View>
 
-        <View style={styles.makeRow}>
+        <View style={styles.birthContainer}>
+          <View style={styles.makeRow}>
+            <Text style={styles.fieldText}>Date of Birth</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
+
+          <View style={styles.makeRow}>
+            <DropDownPicker
+              items={monArr}
+              containerStyle={styles.monStyle}
+              placeholderStyle={styles.makeCenter}
+              selectedLabelStyle={{ textAlign: "center" }}
+              arrowColor={colors.blue}
+              // style={{ borderRadius: moderateScale(30, 2) }}
+              //defaultValue="January"
+              placeholder="Month"
+            />
+
+            <DropDownPicker
+              items={dayArr}
+              //defaultValue={1}
+              containerStyle={styles.monStyle}
+              placeholderStyle={styles.makeCenter}
+              selectedLabelStyle={{ textAlign: "center" }}
+              arrowColor={colors.blue}
+              placeholder="Day"
+            />
+          </View>
+
           <DropDownPicker
-            items={monArr}
-            containerStyle={styles.monStyle}
+            items={yearArr}
+            containerStyle={styles.yearStyle}
+            //defaultValue={year}
             placeholderStyle={styles.makeCenter}
             selectedLabelStyle={{ textAlign: "center" }}
             arrowColor={colors.blue}
-            // style={{ borderRadius: moderateScale(30, 2) }}
-            //defaultValue="January"
-            placeholder="Month"
+            placeholder="Year"
           />
+        </View>
 
+        <View style={styles.genderPickerStyle}>
+          <View style={styles.makeRow}>
+            <Text style={styles.fieldText}>Gender</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
           <DropDownPicker
-            items={dayArr}
-            //defaultValue={1}
-            containerStyle={styles.monStyle}
-            placeholderStyle={styles.makeCenter}
+            items={genderArr}
+            containerStyle={styles.yearStyle}
             selectedLabelStyle={{ textAlign: "center" }}
             arrowColor={colors.blue}
-            placeholder="Day"
+            defaultValue="Male"
           />
         </View>
 
-        <DropDownPicker
-          items={yearArr}
-          containerStyle={styles.yearStyle}
-          //defaultValue={year}
-          placeholderStyle={styles.makeCenter}
-          selectedLabelStyle={{ textAlign: "center" }}
-          arrowColor={colors.blue}
-          placeholder="Year"
-        />
-      </View>
-
-      <View style={styles.genderPickerStyle}>
-        <View style={styles.makeRow}>
-          <Text style={styles.fieldText}>Gender</Text>
-          <Text style={styles.star}>*</Text>
+        <View style={styles.additionalContainer}>
+          <Text style={styles.fieldText}>Additional Information</Text>
+          <View style={styles.additionalText}>
+            <TextInput
+              onChangeText={onChangeText}
+              numberOfLines={4}
+              multiline={true}
+              placeholder="Type any additional information about the child"
+            />
+          </View>
         </View>
-        <DropDownPicker
-          items={genderArr}
-          containerStyle={styles.yearStyle}
-          selectedLabelStyle={{ textAlign: "center" }}
-          arrowColor={colors.blue}
-          defaultValue="Male"
-        />
-      </View>
-
-      <View style={styles.additionalContainer}>
-        <Text style={styles.fieldText}>Additional Information</Text>
-        <View style={styles.additionalText}>
-          <TextInput
-            onChangeText={onChangeText}
-            numberOfLines={4}
-            multiline={true}
-            placeholder="Type any additional information about the child"
-          />
+        <View style={styles.btnContainer}>
+          <TouchableOpacity
+            style={screen.buttonContainer}
+            onPress={() => navigation.navigate("ChildrenScreen")}
+          >
+            <Text style={screen.buttonText}>Add Profile</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.btnContainer}>
-        <TouchableOpacity
-          style={screen.buttonContainer}
-          onPress={() => navigation.navigate("ChildrenScreen")}
-        >
-          <Text style={screen.buttonText}>Submit</Text>
-        </TouchableOpacity>
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -192,12 +243,12 @@ const styles = StyleSheet.create({
     borderRadius: moderateScale(100, 2),
   },
   iconContainer: {
-    width: scale(80),
-    height: verticalScale(80),
-    borderRadius: moderateScale(80, 2),
-    borderColor: colors.lightBlue,
+    width: scale(75),
+    height: verticalScale(75),
+    borderRadius: moderateScale(100, 2),
+    borderColor: colors.blue,
     borderWidth: moderateScale(3),
-    borderStyle: "dashed",
+    borderStyle: "dotted",
   },
   input: {
     width: scale(150),
@@ -210,7 +261,7 @@ const styles = StyleSheet.create({
     marginLeft: scale(5),
   },
   imageContainer: {
-    marginTop: moderateScale(88),
+    marginTop: moderateScale(20),
     marginLeft: moderateScale(24),
   },
   star: {
