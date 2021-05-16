@@ -72,22 +72,24 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     marginTop: verticalScale(40),
-    paddingLeft: moderateScale(24),
-    paddingRight: moderateScale(24),
-    backgroundColor: colors.back
+    alignSelf: "center",
+    backgroundColor: colors.backgroundGrey
   },
   titleContainer: {
+    alignItems: "center"
   },
   cardContainer: {
-    flex: 1,
+    backgroundColor: colors.white,
     elevation: 1,
     padding: moderateScale(24),
     marginTop: verticalScale(16),
     marginBottom: verticalScale(16),
-    borderRadius: moderateScale(16)
+    borderRadius: moderateScale(16),
+    width: scale(300),
+    height: verticalScale(430)
   },
   buttonContainer: {
-    flex: 1
+    marginTop: verticalScale(20)
   },
   cardTitle: {
     textAlign: "center",
