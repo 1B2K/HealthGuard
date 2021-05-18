@@ -19,8 +19,11 @@ const MyCustomHeaderBackImage = () => (
   <Image
     source={require("../../assets/icons/back.png")}
     style={{
-      width: moderateScale(10),
-      height: moderateScale(15),
+      marginLeft: scale(16),
+      marginTop: verticalScale(8),
+      width: moderateScale(11),
+      height: moderateScale(18),
+      resizeMode: "stretch",
       tintColor: colors.blue,
     }}
   />
