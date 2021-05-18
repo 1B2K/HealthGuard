@@ -21,8 +21,8 @@ const MyCustomHeaderBackImage = () => (
     style={{
       marginLeft: scale(16),
       marginTop: verticalScale(8),
-      width: moderateScale(11),
-      height: moderateScale(18),
+      width: scale(11),
+      height: verticalScale(20),
       resizeMode: "stretch",
       tintColor: colors.blue,
     }}
