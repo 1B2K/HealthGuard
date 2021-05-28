@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, View, Text } from "react-native";
+import { SafeAreaView, StyleSheet, View, Text, Image } from "react-native";
 
 import { scale, moderateScale, verticalScale } from "../config/scaling";
 import colorConfig from "../config/colors";
@@ -41,14 +41,7 @@ const NotificationScreen = ({ navigation }) => {
         {notification
           .filter((item) => item.status === "UPCOMING")
           .map((item, index) => {
-            return (
-              <ContentItem
-                key={index}
-                name={item.name}
-                vaccineName={item.vaccineName}
-                date={item.date}
-              />
-            );
+            return content(item, index);
           })}
       </View>
     );
@@ -60,14 +53,7 @@ const NotificationScreen = ({ navigation }) => {
         {notification
           .filter((item) => item.status === "OVERDUE")
           .map((item, index) => {
-            return (
-              <ContentItem
-                key={index}
-                name={item.name}
-                vaccineName={item.vaccineName}
-                date={item.date}
-              />
-            );
+            return content(item, index);
           })}
       </View>
     );
@@ -79,15 +65,35 @@ const NotificationScreen = ({ navigation }) => {
         {notification
           .filter((item) => item.status === "TODAY")
           .map((item, index) => {
-            return (
-              <ContentItem
-                key={index}
-                name={item.name}
-                vaccineName={item.vaccineName}
-                date={item.date}
-              />
-            );
+            return content(item, index);
           })}
+      </View>
+    );
+  };
+
+  const content = (item, index) => {
+    if (item.status === null) {
+      return noStatus();
+    } else {
+      return (
+        <ContentItem
+          key={index}
+          name={item.name}
+          vaccineName={item.vaccineName}
+          date={item.date}
+        />
+      );
+    }
+  };
+
+  const noStatus = () => {
+    return (
+      <View style={styles.noStatusContainer}>
+        <Image
+          style={styles.image}
+          source={require("../../assets/icons/add.png")}
+        />
+        <Text style={[styles.noStatus, styles.grey]}>TAKE A REST!</Text>
       </View>
     );
   };
@@ -129,13 +135,31 @@ const styles = StyleSheet.create({
   },
   status: {
     fontFamily: "fredokaOne-regular",
-    fontSize: moderateScale(12),
+    fontSize: verticalScale(12),
   },
   red: {
     color: colorConfig.red,
   },
   blue: {
     color: colorConfig.blue,
+  },
+  grey: {
+    color: colorConfig.grey,
+  },
+  image: {
+    width: scale(50),
+    height: verticalScale(50),
+  },
+  noStatusContainer: {
+    flexDirection: "row",
+    marginTop: verticalScale(10),
+    alignItems: "center",
+    alignSelf: "center",
+  },
+  noStatus: {
+    fontFamily: "fredokaOne-regular",
+    fontSize: verticalScale(12),
+    marginLeft: scale(10),
   },
 });
 

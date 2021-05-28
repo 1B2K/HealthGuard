@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { scale, moderateScale, verticalScale } from "../../config/scaling";
-import colorConfig from "../../config/colors";
 
 class ContentItem extends Component {
   render = () => {
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
   },
   date: {
     fontFamily: "notoSans-regular",
-    fontSize: moderateScale(12),
+    fontSize: verticalScale(12),
     marginLeft: scale(15),
     textAlign: "right",
   },
@@ -35,13 +34,13 @@ const styles = StyleSheet.create({
   },
   type: {
     fontFamily: "notoSans-regular",
-    fontSize: moderateScale(12),
+    fontSize: verticalScale(12),
     marginLeft: scale(25),
     textAlign: "center",
   },
   name: {
     fontFamily: "notoSans-regular",
-    fontSize: moderateScale(12),
+    fontSize: verticalScale(12),
     fontWeight: "bold",
     textAlign: "left",
   },
