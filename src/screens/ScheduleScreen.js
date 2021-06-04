@@ -81,7 +81,7 @@ const ScheduleScreen = ({ navigation }) => {
           <View style={styles.emptyItemContainer}>
             <Image
               style={styles.babyIcon}
-              source={require("../../assets/icons/baby_smile.png")}
+              source={require("../../assets/icons/baby_smile_grey.png")}
             />
             <View style={styles.emptyTextContainer}>
               <Text style={styles.emptyText}>I GOT ALL SHOTS</Text>
@@ -116,7 +116,7 @@ const ScheduleScreen = ({ navigation }) => {
           <View style={styles.emptyItemContainer}>
             <Image
               style={styles.babyIcon}
-              source={require("../../assets/icons/baby_smile.png")}
+              source={require("../../assets/icons/baby_smile_grey.png")}
             />
             <View style={styles.emptyTextContainer}>
               <Text style={styles.emptyText}>NO ITEMS YET</Text>
