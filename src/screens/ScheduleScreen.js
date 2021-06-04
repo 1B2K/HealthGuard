@@ -14,30 +14,30 @@ const ScheduleScreen = ({ navigation }) => {
   const [isSchedule, setIsSchedule] = React.useState(true);
 
   const vaccineArr = [
-    {
-      status: "Upcoming",
-      vaccineName: "vaccine1",
-      scheduleDate: "2021-04-10",
-      shotDate: "",
-    },
-    {
-      status: "Upcoming",
-      vaccineName: "vaccine2",
-      scheduleDate: "2021-04-10",
-      shotDate: "",
-    },
-    {
-      status: "Upcoming",
-      vaccineName: "vaccine3",
-      scheduleDate: "2021-04-10",
-      shotDate: "",
-    },
-    {
-      status: "Upcoming",
-      vaccineName: "vaccine4",
-      scheduleDate: "2021-04-10",
-      shotDate: "",
-    },
+    // {
+    //   status: "Upcoming",
+    //   vaccineName: "vaccine1",
+    //   scheduleDate: "2021-04-10",
+    //   shotDate: "",
+    // },
+    // {
+    //   status: "Upcoming",
+    //   vaccineName: "vaccine2",
+    //   scheduleDate: "2021-04-10",
+    //   shotDate: "",
+    // },
+    // {
+    //   status: "Upcoming",
+    //   vaccineName: "vaccine3",
+    //   scheduleDate: "2021-04-10",
+    //   shotDate: "",
+    // },
+    // {
+    //   status: "Upcoming",
+    //   vaccineName: "vaccine4",
+    //   scheduleDate: "2021-04-10",
+    //   shotDate: "",
+    // },
     {
       status: "Complete",
       vaccineName: "vaccine5",
@@ -74,13 +74,28 @@ const ScheduleScreen = ({ navigation }) => {
 
   renderLists = () => {
     if (isSchedule) {
-      return (
-        <View>
-          {vaccineArr
-            .filter(function (item) {
-              return item.status == "Upcoming";
-            })
-            .map((data, index) => {
+      let upComingVacc = vaccineArr.filter((item) => {
+        return item.status === "Upcoming";
+      });
+
+      if (upComingVacc.length === 0) {
+        return (
+          <View style={styles.emptyItemContainer}>
+            <Image
+              style={styles.babyIcon}
+              source={require("../../assets/icons/baby_smile.png")}
+            />
+            <View style={styles.emptyTextContainer}>
+              <Text style={styles.emptyText}>I GOT ALL SHOTS</Text>
+              <Text style={styles.emptyText}>THANK YOU!</Text>
+            </View>
+          </View>
+        );
+      } else {
+        return (
+          <View>
+            <TableHeader />
+            {upComingVacc.map((data, index) => {
               return (
                 <TableItem
                   key={index}
@@ -90,16 +105,32 @@ const ScheduleScreen = ({ navigation }) => {
                 />
               );
             })}
-        </View>
-      );
+          </View>
+        );
+      }
     } else {
-      return (
-        <View>
-          {vaccineArr
-            .filter(function (item) {
-              return item.status == "Complete";
-            })
-            .map((data, index) => {
+      let completedVacc = vaccineArr.filter((item) => {
+        return item.status === "Complete";
+      });
+
+      if (completedVacc.length === 0) {
+        return (
+          <View style={styles.emptyItemContainer}>
+            <Image
+              style={styles.babyIcon}
+              source={require("../../assets/icons/baby_smile.png")}
+            />
+            <View style={styles.emptyTextContainer}>
+              <Text style={styles.emptyText}>NO ITEMS YET</Text>
+              <Text style={styles.emptyText}>THANK YOU!</Text>
+            </View>
+          </View>
+        );
+      } else {
+        return (
+          <View>
+            <TableHeader />
+            {completedVacc.map((data, index) => {
               return (
                 <TableItem
                   key={index}
@@ -109,8 +140,9 @@ const ScheduleScreen = ({ navigation }) => {
                 />
               );
             })}
-        </View>
-      );
+          </View>
+        );
+      }
     }
   };
 
@@ -183,7 +215,6 @@ const ScheduleScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>{renderLine()}</View>
-        <TableHeader />
         {renderLists()}
       </View>
     </SafeAreaView>
@@ -267,6 +298,25 @@ const styles = StyleSheet.create({
     height: scale(11.5),
     width: scale(11.5),
     resizeMode: "stretch",
+  },
+  babyIcon: {
+    width: scale(100),
+    height: scale(100),
+    resizeMode: "stretch",
+  },
+  emptyItemContainer: {
+    flex: 0.9,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyTextContainer: {
+    margin: verticalScale(10),
+    alignItems: "center",
+  },
+  emptyText: {
+    fontFamily: "fredokaOne-regular",
+    color: colors.lightGrey,
+    fontSize: verticalScale(23),
   },
 });
 
