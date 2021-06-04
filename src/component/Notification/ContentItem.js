@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { scale, moderateScale, verticalScale } from "../../config/scaling";
+import { scale, verticalScale } from "../../config/scaling";
 
 class ContentItem extends Component {
   render = () => {
