@@ -98,7 +98,7 @@ const NotificationScreen = ({ navigation }) => {
       <View style={styles.noStatusContainer}>
         <Image
           style={styles.image}
-          source={require("../../assets/icons/baby_smile.png")}
+          source={require("../../assets/icons/baby_smile_grey.png")}
         />
         <Text style={[styles.noStatus, styles.grey]}>TAKE A REST!</Text>
       </View>
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   },
   noStatus: {
     fontFamily: "fredokaOne-regular",
-    fontSize: verticalScale(18),
+    fontSize: verticalScale(15),
     marginLeft: scale(10),
   },
 });
