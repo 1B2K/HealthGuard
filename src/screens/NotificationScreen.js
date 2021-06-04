@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: scale(50),
-    height: verticalScale(60),
+    height: verticalScale(50),
+    resizeMode: "stretch",
   },
   noStatusContainer: {
     flexDirection: "row",
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
   },
   noStatus: {
     fontFamily: "fredokaOne-regular",
-    fontSize: verticalScale(12),
+    fontSize: verticalScale(18),
     marginLeft: scale(10),
   },
 });
