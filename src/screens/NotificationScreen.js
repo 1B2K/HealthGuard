@@ -19,7 +19,7 @@ const NotificationScreen = ({ navigation }) => {
       status: "TODAY",
       name: "Jasper Matthews2",
       vaccineName: "COVID-19 Vaccine2",
-      date: "April 15th",
+      date: "December 15th",
     },
     {
       status: "UPCOMING",
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     color: colorConfig.grey,
   },
   image: {
-    width: scale(50),
+    width: verticalScale(50),
     height: verticalScale(50),
     resizeMode: "stretch",
   },
