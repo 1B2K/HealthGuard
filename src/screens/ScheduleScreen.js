@@ -30,36 +30,36 @@ const ScheduleScreen = ({ navigation }) => {
     //   scheduleDate: "2021-04-10",
     //   shotDate: "",
     // },
+    {
+      status: "Upcoming",
+      vaccineName: "vaccine4",
+      scheduleDate: "2021-04-10",
+      shotDate: "",
+    },
     // {
-    //   status: "Upcoming",
-    //   vaccineName: "vaccine4",
-    //   scheduleDate: "2021-04-10",
-    //   shotDate: "",
+    //   status: "Complete",
+    //   vaccineName: "vaccine5",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
     // },
-    {
-      status: "Complete",
-      vaccineName: "vaccine5",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
-    {
-      status: "Complete",
-      vaccineName: "vaccine6",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
-    {
-      status: "Complete",
-      vaccineName: "vaccine7",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
-    {
-      status: "Complete",
-      vaccineName: "vaccine8",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
+    // {
+    //   status: "Complete",
+    //   vaccineName: "vaccine6",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
+    // },
+    // {
+    //   status: "Complete",
+    //   vaccineName: "vaccine7",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
+    // },
+    // {
+    //   status: "Complete",
+    //   vaccineName: "vaccine8",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
+    // },
   ];
 
   renderLine = () => {
@@ -116,11 +116,10 @@ const ScheduleScreen = ({ navigation }) => {
           <View style={styles.emptyItemContainer}>
             <Image
               style={styles.babyIcon}
-              source={require("../../assets/icons/baby_smile_grey.png")}
+              source={require("../../assets/icons/baby_sad_grey.png")}
             />
             <View style={styles.emptyTextContainer}>
-              <Text style={styles.emptyText}>NO ITEMS YET</Text>
-              <Text style={styles.emptyText}>THANK YOU!</Text>
+              <Text style={styles.emptyText}>NOT YET...!!</Text>
             </View>
           </View>
         );
