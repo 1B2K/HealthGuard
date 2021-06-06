@@ -19,6 +19,7 @@ import { ltext } from "../config/localization"
 import Button from "../component/Button";
 import colors from "../config/colors";
 import screen from "../config/screen";
+import { color } from "react-native-reanimated";
 
 const EditChildrenScreen = ({ navigation }) => {
   const { signIn } = React.useContext(AuthContext);
@@ -183,7 +184,7 @@ const EditChildrenScreen = ({ navigation }) => {
           </View>
         </View>
 
-        <Button text={ltext("add_child_button_text")} action={() => navigation.navigate("ChildrenScreen")}/>
+        <Button text={ltext("save_child_button_text")} action={() => navigation.navigate("ChildrenScreen")}/>
    
       </ScrollView>
     </SafeAreaView>
