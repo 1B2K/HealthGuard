@@ -7,8 +7,8 @@
 
     "children_screen_title": "CHILDREN",
 
-    "add_children_screen_title": "ADD CHILDREN",
-    "edit_children_screen_title": "EDIT CHILDREN",
+    "add_children_screen_title": "ADD CHILD",
+    "edit_children_screen_title": "EDIT CHILD",
     "choose_profile_img_title": "Choose profile image",
     "name_field_title": "Name",
     "firstname_field_placeholder": "First Name",
