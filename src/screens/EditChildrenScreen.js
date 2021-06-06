@@ -1,158 +1,301 @@
 import React from "react";
 import {
-  ScrollView,
-  TouchableOpacity,
   StyleSheet,
-  View,
   Text,
+  View,
+  SafeAreaView,
+  Image,
+  TextInput,
+  ScrollView,
+  FlatList,
 } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import DropDownPicker from "react-native-dropdown-picker";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
+import { AuthContext } from "../config/context";
+import { scale, moderateScale, verticalScale } from "../config/scaling";
+import { ltext } from "../config/localization"
+
+import Button from "../component/Button";
 import colors from "../config/colors";
 import screen from "../config/screen";
+import { color } from "react-native-reanimated";
 
-const EditChildrenScreen = ({ navigation }) => {
-  const historyArr = [
+const AddChildScreen = ({ navigation }) => {
+  const { signIn } = React.useContext(AuthContext);
+  const [text, onChangeText] = React.useState("Useless Text");
+
+  let dayArr = [];
+
+  for (let i = 1; i <= 31; i++) {
+    dayArr.push({ label: i.toString(), value: i });
+  }
+
+  let yearArr = [];
+  let year = new Date().getFullYear();
+  for (let i = year; i >= 1920; i--) {
+    yearArr.push({ label: i.toString(), value: i });
+  }
+
+  const image = [
     {
-      type: "Covid-19",
-      day: 1,
-      month: "January",
-      year: 2021,
-      note: "Next does in date: 30-Mar-2021 dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      id: "1",
+      photo: "First Item",
     },
     {
-      type: "Covid-19",
-      day: 1,
-      month: "January",
-      year: 2021,
-      note: "Next does in date: 30-Mar-2021",
+      id: "2",
+      photo: "Second Item",
     },
     {
-      type: "Covid-19",
-      day: 1,
-      month: "January",
-      year: 2021,
-      note: "Next does in date: 30-Mar-2021",
-    },
-    {
-      type: "Covid-19",
-      day: 1,
-      month: "January",
-      year: 2021,
-      note: "Next does in date: 30-Mar-2021",
-    },
-    {
-      type: "Covid-19",
-      day: 1,
-      month: "January",
-      year: 2021,
-      note: "Next does in date: 30-Mar-2021",
-    },
-    {
-      type: "Covid-19",
-      day: 1,
-      month: "January",
-      year: 2021,
-      note: "Next does in date: 30-Mar-2021",
-    },
-    {
-      type: "Covid-19",
-      day: 1,
-      month: "January",
-      year: 2021,
-      note: "Next does in date: 30-Mar-2021",
+      id: "3",
+      photo: "Third Item",
     },
   ];
 
-  renderHistories = () => {
+  const Item = ({ onPress, backgroundColor }) => (
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.iconContainer, backgroundColor]}
+    >
+      <Image style={styles.icon} source={require("../../assets/icon.png")} />
+    </TouchableOpacity>
+  );
+
+  const [selectedId, setSelectedId] = React.useState(null);
+
+  const renderItem = ({ item }) => {
+    const backgroundColor =
+      item.id === selectedId ? colors.white : colors.blue2;
+
     return (
-      <View>
-        {historyArr.map((data, index) => {
-          return (
-            <View style={styles.container}>
-              <View style={styles.listStyle}>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.navigate("ScheduleScreen", {
-                      name: "ScheduleScreen",
-                    })
-                  }
-                >
-                  <Text style={styles.type}>{data.type}</Text>
-                  <Text style={styles.date}>
-                    <Ionicons
-                      name="calendar"
-                      size={15}
-                      color={colors.darkGrey}
-                    ></Ionicons>
-                    {data.day} {data.month}, {data.year}
-                  </Text>
-                  <Text numberOfLines={1} style={styles.note}>
-                    {data.note}
-                  </Text>
-                </TouchableOpacity>
-                <Ionicons
-                  name="ios-arrow-forward"
-                  size={30}
-                  color={colors.lightBlue}
-                  style={styles.arrowIcon}
-                ></Ionicons>
-              </View>
-            </View>
-          );
-        })}
-      </View>
+      <Item
+        item={item}
+        onPress={() => setSelectedId(item.id)}
+        backgroundColor={{ backgroundColor }}
+      />
     );
   };
+
   return (
-    <View style={screen.container}>
-      <ScrollView>{renderHistories()}</ScrollView>
-      <Ionicons
-        name="ios-add-circle"
-        size={90}
-        color={colors.lightBlue}
-        style={styles.addIcon}
-        onPress={() =>
-          navigation.navigate("ChildrenScreen", { screen: "ChildrenScreen" })
-        }
-      ></Ionicons>
-    </View>
+    <SafeAreaView style={screen.container}>
+      <ScrollView>
+        <View style={styles.imageContainer}>
+          <View style={[styles.makeRow, styles.profileImageText]}>
+            <Text style={styles.fieldText}>{ltext("choose_profile_img_title")}</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
+          {/* <View style={styles.iconContainer}>
+            <Image
+              style={styles.icon}
+              source={require("../../assets/icon.png")}
+            />
+          </View> */}
+          <FlatList
+            horizontal
+            data={image}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedId}
+          />
+        </View>
+
+        <View style={styles.nameContainer}>
+          <View style={styles.makeRow}>
+            <Text style={styles.fieldText}>{ltext("name_field_title")}</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
+          <View style={styles.makeRow}>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              placeholder={ltext("firstname_field_placeholder")}
+            />
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              placeholder={ltext("lastname_field_placeholder")}
+            />
+          </View>
+        </View>
+
+        <View style={styles.birthContainer}>
+          <View style={styles.makeRow}>
+            <Text style={styles.fieldText}>{ltext("date_field_title")}</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
+
+          <View style={styles.makeRow}>
+            <DropDownPicker
+              items={ltext("month_array")}
+              containerStyle={styles.monStyle}
+              placeholderStyle={styles.makeCenter}
+              selectedLabelStyle={{ textAlign: "center" }}
+              arrowColor={colors.blue}
+              // style={{ borderRadius: moderateScale(30, 2) }}
+              //defaultValue="January"
+              placeholder={ltext("date_field_month")}
+            />
+
+            <DropDownPicker
+              items={dayArr}
+              //defaultValue={1}
+              containerStyle={styles.monStyle}
+              placeholderStyle={styles.makeCenter}
+              selectedLabelStyle={{ textAlign: "center" }}
+              arrowColor={colors.blue}
+              placeholder={ltext("date_field_day")}
+            />
+          </View>
+
+          <DropDownPicker
+            items={yearArr}
+            containerStyle={styles.yearStyle}
+            //defaultValue={year}
+            placeholderStyle={styles.makeCenter}
+            selectedLabelStyle={{ textAlign: "center" }}
+            arrowColor={colors.blue}
+            placeholder={ltext("date_field_year")}
+          />
+        </View>
+
+        <View style={styles.genderPickerStyle}>
+          <View style={styles.makeRow}>
+            <Text style={styles.fieldText}>{ltext("gender_field_title")}</Text>
+            <Text style={styles.star}>*</Text>
+          </View>
+          <DropDownPicker
+            items={ltext("gender_array")}
+            containerStyle={styles.yearStyle}
+            selectedLabelStyle={{ textAlign: "center" }}
+            arrowColor={colors.blue}
+          />
+        </View>
+
+        <View style={styles.additionalContainer}>
+          <Text style={styles.fieldText}>{ltext("additional_field_title")}</Text>
+          <View style={styles.additionalText}>
+            <TextInput
+              onChangeText={onChangeText}
+              numberOfLines={4}
+              multiline={true}
+              placeholder={ltext("additional_field_placeholder")}
+            />
+          </View>
+        </View>
+
+        <Button text={ltext("save_child_button_text")} action={() => navigation.navigate("ChildrenScreen")}/>
+   
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    width: "95%",
-    marginLeft: "5%",
-    marginTop: "2%",
-    paddingBottom: "2%",
-    borderBottomColor: colors.lightBlue_button,
-    borderBottomWidth: 1,
+  additionalContainer: {
+    marginTop: moderateScale(15),
+    marginLeft: moderateScale(24),
+    marginBottom: verticalScale(16),
   },
-  listStyle: { paddingRight: "12%" },
-  type: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: colors.lightBlue,
+  additionalText: {
+    elevation: 1,
+    width: scale(305),
+    height: verticalScale(115),
+    borderRadius: moderateScale(12, 2),
+    borderColor: colors.white,
+    borderWidth: moderateScale(1),
+    textAlign: "center",
+    backgroundColor: colors.white,
+    marginLeft: scale(5),
+    paddingLeft: scale(10),
+    paddingRight: scale(10)
   },
-  date: {
-    fontSize: 15,
+  birthContainer: {
+    marginTop: moderateScale(15),
+    marginLeft: moderateScale(24),
   },
-  note: { fontSize: 14 },
-  arrowIcon: {
-    flex: 1,
-    alignItems: "center",
-    position: "absolute",
-    marginTop: "6%",
-    right: 0,
+  fieldText: {
+    fontFamily: "notoSans-regular",
+    fontSize: moderateScale(12),
   },
-  addIcon: {
-    flex: 1,
-    position: "absolute",
-    alignSelf: "flex-end",
-    bottom: 0,
-    right: 0,
+  icon: {
+    width: 70,
+    height: 70,
+    borderRadius: moderateScale(100, 2),
   },
-});
+  iconContainer: {
+    width: 70,
+    height: 70,
+    borderRadius: moderateScale(100, 2),
+    borderStyle: "dashed",
+    borderColor: colors.blue,
+    borderWidth: 1.5,
+    marginLeft: scale(10),
+    overflow: "hidden"
+  },
+  input: {
+    elevation: 1,
+    width: scale(150),
+    height: verticalScale(35),
+    borderRadius: moderateScale(30, 2),
+    borderColor: colors.white,
+    borderWidth: moderateScale(1),
+    textAlign: "center",
+    backgroundColor: colors.white,
+    marginLeft: scale(5),
+  },
+  imageContainer: {
+    marginTop: moderateScale(20),
+    marginLeft: moderateScale(24),
+  },
+  star: {
+    color: colors.red,
+    fontSize: moderateScale(12),
+    marginLeft: scale(2),
+  },
+  makeCenter: {
+    textAlign: "center",
+    color: colors.grey,
+  },
+  makeRow: {
+    flexDirection: "row",
+  },
+  monStyle: {
+    width: scale(150),
+    height: verticalScale(35),
+    borderRadius: moderateScale(30, 2),
+    marginLeft: scale(5),
+  },
+  nameContainer: {
+    marginTop: moderateScale(20),
+    marginLeft: moderateScale(24),
+  },
+  yearStyle: {
+    width: scale(305),
+    height: verticalScale(35),
+    borderRadius: moderateScale(30, 2),
+    marginLeft: scale(5),
+  },
+  genderPickerStyle: {
+    marginTop: moderateScale(15),
+    marginLeft: moderateScale(24),
+  },
 
-export default EditChildrenScreen;
+  questionStyle: {
+    marginTop: verticalScale(40),
+    marginBottom: scale(10),
+    textAlign: "center",
+    alignItems: "center",
+    fontSize: moderateScale(20),
+    fontWeight: "bold",
+    color: colors.darkGrey,
+  },
+
+  btnContainer: {
+    marginTop: moderateScale(20),
+  },
+
+  profileImageText: {
+    marginBottom: verticalScale(10)
+  }
+});
+export default AddChildScreen;
