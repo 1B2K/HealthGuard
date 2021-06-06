@@ -6,6 +6,8 @@
     "start": "시작하자",
 
     "children_screen_title": "CHILDREN",
+    "children_latest": "LATEST",
+    "children_birth": "BIRTH",
 
     "add_children_screen_title": "ADD CHILD",
     "edit_children_screen_title": "EDIT CHILD",
@@ -51,6 +53,10 @@
     "vaccine_status_field": "STATUS",
 
     "notification_screen_title": "NOTIFICATION",
+    "notification_overdue": "OVERDUE",
+    "notification_upcoming": "UPCOMING",
+    "notification_today": "TODAY",
+    "notification_no_schedule": "TAKE A REST!",
 
     "edit_profile_screen_title": "EDIT PROFILE"
 }
