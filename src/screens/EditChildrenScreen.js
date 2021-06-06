@@ -2,7 +2,6 @@ import React from "react";
 import {
   Image,
   StyleSheet,
-  View,
   Text,
   ScrollView,
   SafeAreaView,
@@ -187,6 +186,9 @@ const styles = StyleSheet.create({
     width: scale(10),
     resizeMode: "stretch",
   },
-});
 
-export default EditChildrenScreen;
+  profileImageText: {
+    marginBottom: verticalScale(10)
+  }
+});
+export default AddChildScreen;
