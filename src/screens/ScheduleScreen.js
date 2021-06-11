@@ -13,54 +13,54 @@ const ScheduleScreen = ({ navigation }) => {
   const [isSchedule, setIsSchedule] = React.useState(true);
 
   const vaccineArr = [
-    {
-      status: "-",
-      vaccineName: "vaccine1",
-      scheduleDate: "-",
-      shotDate: "",
-    },
-    {
-      status: "Upcoming",
-      vaccineName: "vaccine2",
-      scheduleDate: "May 15, 2021",
-      shotDate: "",
-    },
-    {
-      status: "Overdue",
-      vaccineName: "vaccine3",
-      scheduleDate: "May 5, 2021",
-      shotDate: "",
-    },
+    // {
+    //   status: "Upcoming",
+    //   vaccineName: "vaccine1",
+    //   scheduleDate: "2021-04-10",
+    //   shotDate: "",
+    // },
+    // {
+    //   status: "Upcoming",
+    //   vaccineName: "vaccine2",
+    //   scheduleDate: "2021-04-10",
+    //   shotDate: "",
+    // },
+    // {
+    //   status: "Upcoming",
+    //   vaccineName: "vaccine3",
+    //   scheduleDate: "2021-04-10",
+    //   shotDate: "",
+    // },
     {
       status: "Upcoming",
       vaccineName: "vaccine4",
-      scheduleDate: "May 15, 2021",
+      scheduleDate: "2021-04-10",
       shotDate: "",
     },
-    {
-      status: "Complete",
-      vaccineName: "vaccine5",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
-    {
-      status: "Complete",
-      vaccineName: "vaccine6",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
-    {
-      status: "Complete",
-      vaccineName: "vaccine7",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
-    {
-      status: "Complete",
-      vaccineName: "vaccine8",
-      scheduleDate: "May 15, 2021",
-      shotDate: "May 19, 2021",
-    },
+    // {
+    //   status: "Complete",
+    //   vaccineName: "vaccine5",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
+    // },
+    // {
+    //   status: "Complete",
+    //   vaccineName: "vaccine6",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
+    // },
+    // {
+    //   status: "Complete",
+    //   vaccineName: "vaccine7",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
+    // },
+    // {
+    //   status: "Complete",
+    //   vaccineName: "vaccine8",
+    //   scheduleDate: "May 15, 2021",
+    //   shotDate: "May 19, 2021",
+    // },
   ];
 
   renderLine = () => {
@@ -71,15 +71,29 @@ const ScheduleScreen = ({ navigation }) => {
     }
   };
 
-  renderItems = () => {
+  renderLists = () => {
     if (isSchedule) {
-      return (
-        <View>
-          {vaccineArr
-            .filter(function (item) {
-              return item.status !== "Complete";
-            })
-            .map((data, index) => {
+      let upComingVacc = vaccineArr.filter((item) => {
+        return item.status === "Upcoming";
+      });
+
+      if (upComingVacc.length === 0) {
+        return (
+          <View style={styles.emptyItemContainer}>
+            <Image
+              style={styles.babyIcon}
+              source={require("../../assets/icons/baby_smile_grey.png")}
+            />
+            <View style={styles.emptyTextContainer}>
+              <Text style={styles.emptyText}>I GOT ALL SHOTS</Text>
+              <Text style={styles.emptyText}>THANK YOU!</Text>
+            </View>
+          </View>
+        );
+      } else {
+        return (
+          <View>
+            {upComingVacc.map((data, index) => {
               return (
                 <View key={index}>
                   <VaccineItem
@@ -90,16 +104,30 @@ const ScheduleScreen = ({ navigation }) => {
                 </View>
               );
             })}
-        </View>
-      );
+          </View>
+        );
+      }
     } else {
-      return (
-        <View>
-          {vaccineArr
-            .filter(function (item) {
-              return item.status === "Complete";
-            })
-            .map((data, index) => {
+      let completedVacc = vaccineArr.filter((item) => {
+        return item.status === "Complete";
+      });
+
+      if (completedVacc.length === 0) {
+        return (
+          <View style={styles.emptyItemContainer}>
+            <Image
+              style={styles.babyIcon}
+              source={require("../../assets/icons/baby_sad_grey.png")}
+            />
+            <View style={styles.emptyTextContainer}>
+              <Text style={styles.emptyText}>NOT YET...!!</Text>
+            </View>
+          </View>
+        );
+      } else {
+        return (
+          <View>
+            {completedVacc.map((data, index) => {
               return (
                 <View key={index}>
                   <VaccineItem
@@ -110,8 +138,9 @@ const ScheduleScreen = ({ navigation }) => {
                 </View>
               );
             })}
-        </View>
-      );
+          </View>
+        );
+      }
     }
   };
 
@@ -184,8 +213,7 @@ const ScheduleScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <View>{renderLine()}</View>
-
-        <View>{renderItems()}</View>
+        {renderLists()}
       </View>
     </ScrollView>
   );
@@ -267,6 +295,26 @@ const styles = StyleSheet.create({
     height: scale(11.5),
     width: scale(11.5),
     resizeMode: "stretch",
+  },
+  babyIcon: {
+    width: scale(100),
+    height: scale(100),
+    resizeMode: "stretch",
+  },
+  emptyItemContainer: {
+    width: scale(300),
+    height: verticalScale(300),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  emptyTextContainer: {
+    margin: verticalScale(10),
+    alignItems: "center",
+  },
+  emptyText: {
+    fontFamily: "fredokaOne-regular",
+    color: colors.lightGrey,
+    fontSize: verticalScale(23),
   },
 });
 
