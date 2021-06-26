@@ -1,30 +1,83 @@
+
+![Logo](https://raw.githubusercontent.com/1B2K/HealthGuard/master/assets/icons/logo.png)
+
+    
 # HealthGuard
+
 Health Guard is a mobile application for managing children's vaccination history. </br>
 1. Profile - Parents can add and delete their children. </br>
 2. Vaccine schedule : User can manage their chilren's vaccine appointment date and view vaccination date. </br>
 3. Notification : User can be notified vaccination date from this application.
 ![](assets/REadmeImage.png)
 
-## Installation
-```
-- npm install
-- npm start
-```
-## Stack Used
-```
-Front End : React-Native, Bootstrap
-Back End: TBD
+HealthGuard provides parents with an easy-to-use interface to manage and track their children's vaccination history.
+
+
+
+
+[![Repo Size](https://img.shields.io/github/repo-size/1B2K/HealthGuard?)](https://choosealicense.com/licenses/mit/)
+
+![Open Pull Requests](https://img.shields.io/github/issues-pr-raw/1B2K/HealthGuard?)
+
+![Open Issues](https://img.shields.io/github/issues-raw/1B2K/HealthGuard)
+
+[![License](https://img.shields.io/github/license/1B2K/HealthGuard)](https://choosealicense.com/licenses/mit/)
+
+
+
+
+
+  
+## Authors
+
+- [@ajlomagno](https://www.github.com/ajlomagno)
+- [@hyunjiLeeTech](https://www.github.com/hyunjiLeeTech)
+- [@ElisaNgLi](https://www.github.com/ElisaNgLi)
+- [@HyoukSunKwon](https://www.github.com/HyoukSunKwon)
+
+  
+## Features
+
+- English/Spanish/Korean localization
+- Manage multiple children's vaccine history
+- Schedule vaccination appointments
+- Notifications for upcoming vaccinations
+
+  
+## Tech Stack
+
+**Frontend:** ``React-Native, Boostrap``
+
+
+
+  
+## Deploying & Running
+
+#### Requirements
+
+- [Expo](https://expo.io/)
+
+- Android device with [Expo Go App](https://expo.io/client) OR
+
+- Android Emulator running on the same computer
+ 
+
+To deploy and run this project:
+
+```bash
+  git clone https://github.com/1B2K/HealthGuard.git
+
+  npm install
+
+  npm start
 ```
 
-### Road Map
-It is version 1.
-Version 2 will be released with several upgraded function: Sign up and Sign in, description of vaccine, manage vaccine list. 
+  
+## Screenshots
 
-## Contributing
-Pull requsets are welcome. For major changes, Please oepn an issue first to discuss what you would like to change.
+![Children Screen](pics/children_screen.png)
+![Add Child Screen](pics/add_child_screen.png)
+![Vaccine Screen](pics/vaccine_screen.png)
+![Notification Screen](pics/notification_screen.png)
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
-
-## Project status
-It is on going project.
+  
