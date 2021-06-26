@@ -69,9 +69,9 @@ To deploy and run this project:
   
 ## Screenshots
 
-![Children Screen](pics\children_screen.png)
-![Add Child Screen](pics\add_child_screen.png)
-![Vaccine Screen](pics\vaccine_screen.png)
-![Notification Screen](pics\notification_screen.png)
+![Children Screen](pics/children_screen.png)
+![Add Child Screen](pics/add_child_screen.png)
+![Vaccine Screen](pics/vaccine_screen.png)
+![Notification Screen](pics/notification_screen.png)
 
   
