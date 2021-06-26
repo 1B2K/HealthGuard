@@ -7,12 +7,14 @@ import {
   Text,
   SafeAreaView,
 } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
+
+import ChildItem from "../component/ChildItem";
 
 import { scale, moderateScale, verticalScale } from "../config/scaling";
 import colors from "../config/colors";
 // import font from "../config/context";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { ltext } from "../config/localization";
 
 const users = [
   {
@@ -43,57 +45,61 @@ const users = [
     latest: "2020-03-20",
     avatar: "https://source.unsplash.com/user/nicoleknipes",
   },
+  {
+    id: 5,
+    name: "JasperMattews",
+    birth: "Jan 15th 2020",
+    latest: "2020-03-20",
+    avatar: "https://source.unsplash.com/user/nicoleknipes",
+  },
+  {
+    id: 6,
+    name: "JasperMattews",
+    birth: "Jan 15th 2020",
+    latest: "2020-03-20",
+    avatar: "https://source.unsplash.com/user/nicoleknipes",
+  },
+  {
+    id: 7,
+    name: "JasperMattews",
+    birth: "Jan 15th 2020",
+    latest: "2020-03-20",
+    avatar: "https://source.unsplash.com/user/nicoleknipes",
+  },
+  {
+    id: 8,
+    name: "JasperMattews",
+    birth: "Jan 15th 2020",
+    latest: "2020-03-20",
+    avatar: "https://source.unsplash.com/user/nicoleknipes",
+  },
 ];
 
 const ChildrenScreen = ({ navigation }) => {
   return (
     <View style={styles.mainContainer}>
-      <ScrollView style={styles.scrollView}>
-        <View style={styles.header}>
-          {users.map((u) => {
+      <ScrollView>
+        <View>
+          {users.map((child) => {
             return (
-              <View key={u.id}>
-                <TouchableOpacity
-                  onPress={() => navigation.navigate("ScheduleScreen")}
-                >
-                  <View style={styles.container}>
-                    {/* <Image source={{ uri:u.avatar }} /> */}
-                    <Image
-                      style={styles.image}
-                      source={require("../../assets/icons/logo.png")}
-                    />
-                    <View style={styles.body}>
-                      <Text style={styles.name}>{u.name}</Text>
-                      <View style={styles.lineContainer}>
-                        <Image
-                          style={styles.icon}
-                          source={require("../../assets/icons/calendar.png")}
-                        />
-                        <Text style={styles.birth}>{ltext("children_birth")}: {u.birth}</Text>
-                      </View>
-                      <View style={styles.lineContainer}>
-                        <Image
-                          style={styles.icon}
-                          source={require("../../assets/icons/injection.png")}
-                        />
-                        <Text style={styles.birth}>{ltext("children_latest")}: {u.latest}</Text>
-                      </View>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </View>
+              <ChildItem
+                avatar={child.avatar}
+                name={child.name}
+                birth={child.birth}
+                latest={child.latest}
+                action={() => navigation.navigate("ScheduleScreen")}
+              />
             );
           })}
         </View>
       </ScrollView>
-      <View style={styles.foot}>
-        <TouchableOpacity onPress={() => navigation.navigate("AddChildScreen")}>
-          <Image
-            style={styles.addIcon}
-            source={require("../../assets/icons/add-profile.png")}
-          ></Image>
-        </TouchableOpacity>
-      </View>
+      <Ionicons
+        name="ios-add-circle"
+        size={90}
+        color={colors.lightBlue}
+        style={styles.addIcon}
+        onPress={() => navigation.navigate("AddChildScreen")}
+      ></Ionicons>
     </View>
   );
 };
@@ -102,65 +108,13 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
   },
-  header: {
-    flex: 0.8,
-  },
-  foot: {
-    flex: 0.2,
-  },
-  scrollView: {
-    flex: 0.8,
-  },
-  container: {
-    height: moderateScale(96),
-    backgroundColor: colors.white,
-    flexDirection: "row",
-    marginBottom: scale(10),
-  },
-  lineContainer: {
-    flexDirection: "row",
-  },
-  name: {
-    fontFamily: "notoSans-bold",
-    fontSize: moderateScale(16),
-    lineHeight: moderateScale(22),
-    margin: scale(5),
-    color: colors.black,
-  },
-  birth: {
-    fontFamily: "roboto-regular",
-    fontSize: moderateScale(12),
-    color: colors.black,
-    lineHeight: verticalScale(16.5),
-    margin: scale(5),
-  },
-  image: {
-    flex: 1,
-    resizeMode: "center",
-    height: verticalScale(66),
-    width: scale(66),
-    margin: scale(10),
-    marginTop: verticalScale(15),
-    justifyContent: "space-around",
-    borderRadius: scale(400 / 2),
-  },
-  body: {
-    flex: 2,
-    justifyContent: "center",
-  },
   addIcon: {
+    flex: 1,
+    position: "absolute",
     alignSelf: "flex-end",
-    width: scale(70),
-    height: verticalScale(70),
-    marginRight: moderateScale(23),
-    resizeMode: "stretch",
-  },
-  icon: {
-    marginTop: verticalScale(8),
-    marginLeft: scale(4),
-    height: verticalScale(10),
-    width: scale(10),
-    resizeMode: "stretch",
+    bottom: 0,
+    right: 10,
+    color: colors.blue,
   },
 });
 
